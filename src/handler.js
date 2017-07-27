@@ -1,5 +1,6 @@
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
+const apiCall = require("./selectmovie.js")
 
 const contentTypes = {
  '.html': 'text/html',
@@ -49,7 +50,20 @@ const handlers = {
     res.writeHead(200, {
       "Content-type": "text/html"
     });
-    res.end();
+    apiCall((body) => {
+      const respObject = JSON.parse(body);
+      let number = Math.floor(Math.random() * 19);
+      const titleEn = respObject["results"][number].title;
+      const overview = respObject["results"][number].overview;
+      const releaseDate = respObject["results"][number].release_date;
+      const poster = respObject["results"][number].poster_path;
+
+      console.log(titleEn);
+      console.log(overview);
+      console.log(releaseDate);
+      console.log(poster);
+      res.end(titleEn);
+  });
   },
   notFound: (req, res) => {
     res.writeHead(404, {

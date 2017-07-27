@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const handlers = require('./handler.js');
 
 const router = (req, res) => {
