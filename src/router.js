@@ -1,26 +1,22 @@
 const fs = require('fs');
 const path = require('path');
-const handlers = require('./handlers.js');
+const handlers = require('./handler.js');
 
 const router = (req, res) => {
   const routes = {
     '/': handlers.home,
     '/search' : handlers.search,
+    '/style.css': handlers.assets,
+    '/index.js': handlers.assets,
+    '/dom.js': handlers.assets,
   }
 
   const endpoint = req.url;
-  if (endpoint === '/') {
-
-  } else if (endpoint === '/search') {
-    res.writeHead(200, {
-      "Content-type": "text/html"
-    });
-    res.end();
-  } else {
-    res.writeHead(404, {
-      "Content-type": "text/html"
-    });
-    res.end("<h1>Sorry, this page doesn't exist</h1>");
+  if (routes[endpoint]) {
+    routes[endpoint](req, res);
+  }
+  else {
+    handlers.notFound(req, res);
   }
 }
 
