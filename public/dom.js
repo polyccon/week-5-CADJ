@@ -6,7 +6,7 @@
     e.preventDefault();
     var genre = document.getElementById('js-genre_input').value;
     var year = document.getElementById('year').value;
-    var url = '/search/?' + 'genre=' + genre + '&year=' + year;
+    var url = '/search?' + 'genre=' + genre + '&year=' + year;
     httpRequest(url, renderDom);
   })
 
@@ -29,26 +29,13 @@
   var dom_releasedate = document.getElementById("releasedate");
   var dom_overview = document.getElementById("overview");
 
+
   function renderDom(data) {
-    randomMov.innerHTML = "";
-    dom_title.innerHTML = "";
-    dom_poster.innerHTML = "";
-    dom_releasedate.innerHTML = "";
-    dom_overview.innerHTML = "";
-
-    var titleEn = data.title;
-    var posterPath = data.poster_path;
-    var overview = data.overview;
-    var releaseDate = data.release_date;
-
-
-    dom_title.textContent = titleEn;
-
-    var dom_img = document.createElement("img");
-    dom_img.src = "https://image.tmdb.org/t/p/w500/" + posterPath;
-    dom_poster.appendChild(dom_img);
-
-    dom_releasedate.textContent = releaseDate;
-    dom_overview.textContent = overview;
+    var posterPath = data.poster;
+    randomMov.style = "display: block";
+    dom_title.textContent = data.titleEn;
+    dom_poster.src = "https://image.tmdb.org/t/p/w650" + posterPath;
+    dom_releasedate.textContent = "Release date: "+ data.releaseDate;
+    dom_overview.textContent = "Summary: " + data.overview;
   }
 })();

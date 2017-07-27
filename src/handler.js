@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const apiCall = require("./selectmovie.js")
+const apiCall = require("./selectmovie.js");
+const url = require("url");
 
 const contentTypes = {
- '.html': 'text/html',
+  '.html': 'text/html',
   '.js': 'application/javascript',
   '.css': 'text/css',
 };
@@ -44,26 +45,31 @@ const handlers = {
         res.end(file);
       }
     });
-    
+
   },
   search: (req, res) => {
+    const urlObj = url.parse(req.url, true);
+    const queries = urlObj.query;
+
     res.writeHead(200, {
       "Content-type": "text/html"
     });
-    apiCall((body) => {
+    apiCall(queries.genre, queries.year, (body) => {
       const respObject = JSON.parse(body);
-      let number = Math.floor(Math.random() * 19);
-      const titleEn = respObject["results"][number].title;
-      const overview = respObject["results"][number].overview;
-      const releaseDate = respObject["results"][number].release_date;
-      const poster = respObject["results"][number].poster_path;
+      let number = Math.floor(Math.random() * respObject.results.length);
+      const titleEn = respObject.results[number].title;
+      const overview = respObject.results[number].overview;
+      const releaseDate = respObject.results[number].release_date;
+      const poster = respObject.results[number].poster_path;
+      const result = JSON.stringify({
+        titleEn,
+        overview,
+        releaseDate,
+        poster
+      });
 
-      console.log(titleEn);
-      console.log(overview);
-      console.log(releaseDate);
-      console.log(poster);
-      res.end(titleEn);
-  });
+      res.end(result);
+    });
   },
   notFound: (req, res) => {
     res.writeHead(404, {
