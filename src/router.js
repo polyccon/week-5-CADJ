@@ -1,40 +1,20 @@
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
+const handlers = require('./handler.js');
 
 const router = (req, res) => {
-  // make url object out of our url
-  const urlObj = url.parse(req.url, true);
-  const endpoint = urlObj.pathname;
-  console.log("req.url " + req.url);
-  if (endpoint === '/') {
-    const filePath = path.join(__dirname, "..", "public", "index.html");
-    fs.readFile(filePath, (error, file) => {
-      if (error) {
-        res.writeHead(500, {
-          "Content-type": "text/html"
-        });
-        res.end("<h1>So sorry, we've had a problem on our end.</h1>");
+  const routes = {
+    '/': handlers.home,
+    '/search' : handlers.search,
+    '/style.css': handlers.assets,
+    '/index.js': handlers.assets,
+    '/dom.js': handlers.assets,
+  }
 
-      } else {
-        res.writeHead(200, {
-          "Content-type": "text/html"
-        });
-        res.end();
-      }
-    });
-  } else if (endpoint === '/search') {
-    console.log("inside search");
-    res.writeHead(200, {
-      "Content-type": "text/html"
-    });
-    // send api request
-    res.end();
-  } else {
-    res.writeHead(404, {
-      "Content-type": "text/html"
-    });
-    res.end("<h1>Sorry, this page doesn't exist</h1>");
+  const endpoint = req.url;
+  if (routes[endpoint]) {
+    routes[endpoint](req, res);
+  }
+  else {
+    handlers.notFound(req, res);
   }
 }
 
