@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "node tests/*.test.js | tap-spec",
+    "test": "node ./tests/router.test.js | tap-spec",
     "devStart": "nodemon src/server.js",
     "coverage": "./node_modules/.bin/istanbul cover tape ./tests/*.js"
   },
