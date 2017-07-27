@@ -1,0 +1,40 @@
+body {
+  background-image: url("https://labs.mil.up.pt/blogs/carolinaalves/wp-content/uploads/sites/124/2016/10/cinema-1214189817jpg.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+}
+h1{
+  border-style: solid;
+  border-width: 0.3vw;
+  background-color: white;
+  margin: 0.8vw;
+  padding: 0.7vw;
+  font-size: 4vw;
+  font-family: : "Impact", cursive;
+}
+h2{
+  border-style: solid;
+  color: black;
+  border-width: 0.3vw;
+  background-color: white;
+  margin: 0.8vw;
+  padding: 0.7vw;
+  font-size: 2vw;
+  font-family: : "Impact", cursive;
+}
+ h3 {
+  color: #424242;
+  font-family: "Impact", cursive;
+  font-weight: normal;
+  font-size: 50px;
+  color: white;
+}
+p {
+  color: #424242;
+  font-family: "Impact", cursive;
+  font-weight: normal;
+  font-size: 50px;
+  color: black;
+  font-style: oblique;
+}
