@@ -28,13 +28,18 @@ const router = (req, res) => {
     apiCall(function (body){
       //var arr = Object.keys(body);
       const respObject = JSON.parse(body);
-      const title = respObject["results"][0].title;
-      const overview = respObject["results"][0].overview;
-      const releaseDate = respObject["results"][0].release_date;
-      const poster = respObject["results"][0].poster_path;
-      
-      console.log(title);
-      res.end(title);
+      let number = Math.floor(Math.random() * 19);
+      console.log(number);
+      let titleEn = respObject["results"][number].title;
+      const overview = respObject["results"][number].overview;
+      const releaseDate = respObject["results"][number].release_date;
+      const poster = respObject["results"][number].poster_path;
+
+      console.log(titleEn);
+      console.log(overview);
+      console.log(releaseDate);
+      console.log(poster);
+      res.end(titleEn);
   });
 
   } else {
