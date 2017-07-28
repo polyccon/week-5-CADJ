@@ -9,6 +9,7 @@
   "scripts": {
     "test": "node ./tests/router.test.js | tap-spec",
     "devStart": "nodemon src/server.js",
+    "start": "nodemon src/server.js",
     "coverage": "./node_modules/.bin/istanbul cover tape ./tests/*.js"
   },
   "repository": {
