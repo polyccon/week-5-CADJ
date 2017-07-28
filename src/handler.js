@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const apiCall = require("./selectmovie.js");
 const url = require("url");
+const yearValid = require("./yearvalidation.js");
+
 
 const contentTypes = {
   '.html': 'text/html',
@@ -54,6 +56,8 @@ const handlers = {
     res.writeHead(200, {
       "Content-type": "text/html"
     });
+    const resultyear = yearValid(queries.year);
+    if (resultyear.isValid) {
     apiCall(queries.genre, queries.year, (body) => {
       const respObject = JSON.parse(body);
       let number = Math.floor(Math.random() * respObject.results.length);
@@ -70,6 +74,11 @@ const handlers = {
 
       res.end(result);
     });
+  }
+    else {
+      res.writeHead(404, {"Content-type" : "text/html"});
+      res.end("<h1>Invalid parameters: ${resultyear.message}</h1>");
+    }
   },
   notFound: (req, res) => {
     res.writeHead(404, {
