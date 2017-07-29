@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>FilmByte</title>
+  <script src="index.js" type="text/javascript" async></script>
+  <script src="dom.js" type="text/javascript" async></script>
+
+</head>
+
+<body>
+
+  <h1 class = "apptitle">FilmByte</h1>
+  <h3 class = "randomise">Randomise your dreams!<h3>
+    <form>
+      <div>
+        <label for="genre">Select a Genre:</label>
+        <select id="js-genre_input">
+              <optgroup label="Genre">
+                <option value="0">None</option>
+                <option value="28">Action</option>
+                <option value="12">Adventure</option>
+                <option value="16">Animation</option>
+                <option value="35">Comedy</option>
+                <option value="80">Crime</option>
+                <option value="99">Documentary</option>
+                <option value="18">Drama</option>
+                <option value="10751">Family</option>
+                <option value="14">Fantasy</option>
+                <option value="36">History</option>
+                <option value="27">Horror</option>
+                <option value="10402">Music</option>
+                <option value="9648">Mystery</option>
+                <option value="10749">Romance</option>
+                <option value="878">Science Fiction</option>
+                <option value="10770">TV Movie</option>
+                <option value="10752">War</option>
+                <option value="37">Western</option>
+                <option value="53">Thriller</option>
+              </optgroup>
+</select>
+              <label for="year">Select a Year:</label>
+              <input type="number" placeholder="Enter a year" id="year">
+              <button id="js-submit_button">Submit</button>
+</div>
+</form>
+
+<div id="random_movie" style="display: none">
+  <p class ="par">May we suggest the following for you:</p>
+  <h2 title="search-results" id="title" class ="movietitle">
+  </h2>
+  <img src="url" id = "poster" alt="" style="width:404px;height:628px;"></img>
+  <section title="search-results" id="releasedate" class ="reldate">
+  </section>
+  <section title="search-results" id="overview" class = "overview">
+  </section>
+
+</div>
+  </body>
+</html>
