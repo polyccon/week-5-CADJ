@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 const http = require('http');
 const router = require('./router');
+
 
 const port = process.env.PORT || 4000;
 const hostname = process.env.HOST || 'localhost';
