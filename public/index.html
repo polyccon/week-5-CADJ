@@ -8,11 +8,13 @@
   <title>FilmByte</title>
   <script src="index.js" type="text/javascript" async></script>
   <script src="dom.js" type="text/javascript" async></script>
+
 </head>
 
 <body>
-  <h1>FilmByte</h1>
-  <h3>Randomise your dreams!<h3>
+
+  <h1 class = "apptitle">FilmByte</h1>
+  <h3 class = "randomise">Randomise your dreams!<h3>
     <form>
       <div>
         <label for="genre">Select a Genre:</label>
@@ -45,7 +47,16 @@
               <button id="js-submit_button">Submit</button>
 </div>
 </form>
-<div id="random_movie">
+
+<div id="random_movie" style="display: none">
+  <p class ="par">May we suggest the following for you:</p>
+  <h2 title="search-results" id="title" class ="movietitle">
+  </h2>
+  <img src="url" id = "poster" alt="" style="width:404px;height:628px;"></img>
+  <section title="search-results" id="releasedate" class ="reldate">
+  </section>
+  <section title="search-results" id="overview" class = "overview">
+  </section>
 
 </div>
   </body>

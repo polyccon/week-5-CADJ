@@ -6,17 +6,45 @@
     e.preventDefault();
     var genre = document.getElementById('js-genre_input').value;
     var year = document.getElementById('year').value;
-    // /search/?genre=action&year=2015
     var url = '/search?' + 'genre=' + genre + '&year=' + year;
+    httpRequest(url, renderDom);
+  })
 
-    // make the api call to server
+  // make the api call to server
+  function httpRequest(url, nextFunction) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var data = JSON.parse(xhr.responseText);
+        nextFunction(null, data);
       }
     }
-    xhr.open("GET", url, true);
+    xhr.open('GET', url, true);
     xhr.send();
-  });
+  }
+
+  var randomMov = document.getElementById("random_movie");
+  var dom_title = document.getElementById("title");
+  var dom_poster = document.getElementById("poster");
+  var dom_releasedate = document.getElementById("releasedate");
+  var dom_overview = document.getElementById("overview");
+
+
+  function renderDom(data) {
+    console.log("error2");
+    console.log(data);
+    if (data === "error"){
+      console.log("error3");
+      randomMov.style = "display: block";
+      dom_title.textContent = "Sorry, please try another year";
+    }
+    else{
+    var posterPath = data.poster;
+    randomMov.style = "display: block";
+    dom_title.textContent = data.titleEn;
+    dom_poster.src = "https://image.tmdb.org/t/p/w650" + posterPath;
+    dom_releasedate.textContent = "Release date: "+ data.releaseDate;
+    dom_overview.textContent = "Summary: " + data.overview;
+  }
+}
 })();
