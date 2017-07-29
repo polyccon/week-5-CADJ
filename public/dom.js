@@ -13,8 +13,11 @@
   // make the api call to server
   function httpRequest(url, nextFunction) {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
+    xhr.onreadystatechange = function(error, data) {
+      if (xhr.readyState == 4 && xhr.status == 400) {
+        nextFunction(error);
+      }
+      else if (xhr.readyState == 4 && xhr.status == 200) {
         var data = JSON.parse(xhr.responseText);
         nextFunction(null, data);
       }
@@ -30,11 +33,9 @@
   var dom_overview = document.getElementById("overview");
 
 
-  function renderDom(data) {
-    console.log("error2");
-    console.log(data);
-    if (data === "error"){
-      console.log("error3");
+  function renderDom(error, data) {
+
+    if (error){
       randomMov.style = "display: block";
       dom_title.textContent = "Sorry, please try another year";
     }

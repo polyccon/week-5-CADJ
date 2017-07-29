@@ -69,6 +69,14 @@ const handlers = {
         } else {
 
           movieApi(queries.genre, queries.year, (error, body) => {
+            if (error){
+              res.writeHead(500, {
+                "Content-type": "text/html"
+              });
+              res.end("Sorry");
+
+
+          }else{
                 const respObject = JSON.parse(body);
                 let number = Math.floor(Math.random() * respObject.results.length);
                 const titleEn = respObject.results[number].title;
@@ -85,6 +93,7 @@ const handlers = {
                   "Content-type": "text/html"
                 });
                 res.end(result);
+              }
               });
             }
           },
