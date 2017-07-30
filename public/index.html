@@ -17,7 +17,7 @@
   <h3 class = "randomise">Randomise your dreams!<h3>
     <form>
       <div>
-        <label for="genre">Select a Genre:</label>
+        <label for="genre" class = "genre">Select a Genre:</label>
         <select id="js-genre_input">
               <optgroup label="Genre">
                 <option value="0">None</option>
@@ -42,17 +42,17 @@
                 <option value="53">Thriller</option>
               </optgroup>
 </select>
-              <label for="year">Select a Year:</label>
+              <label class = "year" for="year">Select a Year:</label>
               <input type="number" placeholder="Enter a year" id="year">
               <button id="js-submit_button">Submit</button>
 </div>
 </form>
 
 <div id="random_movie" style="display: none">
-  <p class ="par">May we suggest the following for you:</p>
+  <p id ="par" class ="par"></p>
   <h2 title="search-results" id="title" class ="movietitle">
   </h2>
-  <img src="url" id = "poster" alt="" style="width:404px;height:628px;"></img>
+  <img id = "poster" style="width:404px;height:628px;"></img>
   <section title="search-results" id="releasedate" class ="reldate">
   </section>
   <section title="search-results" id="overview" class = "overview">

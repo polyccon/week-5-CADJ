@@ -15,10 +15,15 @@
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(error, data) {
       if (xhr.readyState == 4 && xhr.status == 400) {
+
+        nextFunction(error);
+      }
+      else if (xhr.readyState == 4 && xhr.status == 401) {
+
         nextFunction(error);
       }
       else if (xhr.readyState == 4 && xhr.status == 200) {
-        var data = JSON.parse(xhr.responseText);
+        data = JSON.parse(xhr.responseText);
         nextFunction(null, data);
       }
     }
@@ -27,6 +32,7 @@
   }
 
   var randomMov = document.getElementById("random_movie");
+  var par = document.getElementById("par");
   var dom_title = document.getElementById("title");
   var dom_poster = document.getElementById("poster");
   var dom_releasedate = document.getElementById("releasedate");
@@ -37,11 +43,13 @@
 
     if (error){
       randomMov.style = "display: block";
+
       dom_title.textContent = "Sorry, please try another year";
     }
     else{
     var posterPath = data.poster;
     randomMov.style = "display: block";
+    par.textContent = "May we suggest the following for you";
     dom_title.textContent = data.titleEn;
     dom_poster.src = "https://image.tmdb.org/t/p/w650" + posterPath;
     dom_releasedate.textContent = "Release date: "+ data.releaseDate;
