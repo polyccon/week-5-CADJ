@@ -23,10 +23,14 @@ body {
   padding: 0.7vw;
   font-size: 2vw;
 }
- .randomise {
+ .randomise, .year, .genre {
    font-weight: normal;
    font-size: 50px;
    color: white;
+}
+.poster{
+  width:404px;
+  height:628px
 }
  .par {
   font-weight: normal;

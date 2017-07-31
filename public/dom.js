@@ -16,8 +16,7 @@
     xhr.onreadystatechange = function(error, data) {
       if (xhr.readyState == 4 && xhr.status == 400) {
         nextFunction(error);
-      }
-      else if (xhr.readyState == 4 && xhr.status == 200) {
+      } else if (xhr.readyState == 4 && xhr.status == 200) {
         var data = JSON.parse(xhr.responseText);
         nextFunction(null, data);
       }
@@ -31,21 +30,19 @@
   var dom_poster = document.getElementById("poster");
   var dom_releasedate = document.getElementById("releasedate");
   var dom_overview = document.getElementById("overview");
-
+  var par = document.getElementById("par");
 
   function renderDom(error, data) {
-
-    if (error){
-      randomMov.style = "display: block";
-      dom_title.textContent = "Sorry, please try another year";
-    }
-    else{
-    var posterPath = data.poster;
     randomMov.style = "display: block";
-    dom_title.textContent = data.titleEn;
-    dom_poster.src = "https://image.tmdb.org/t/p/w650" + posterPath;
-    dom_releasedate.textContent = "Release date: "+ data.releaseDate;
-    dom_overview.textContent = "Summary: " + data.overview;
+    if (error) {
+      dom_title.textContent = "Sorry, please try another year";
+    } else {
+      var posterPath = data.poster;
+      par.textContent = "May we suggest the following for you:"
+      dom_title.textContent = data.titleEn;
+      dom_poster.src = "https://image.tmdb.org/t/p/w650" + posterPath;
+      dom_releasedate.textContent = "Release date: " + data.releaseDate;
+      dom_overview.textContent = "Summary: " + data.overview;
+    }
   }
-}
 })();
