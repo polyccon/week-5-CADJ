@@ -17,7 +17,7 @@
       if (xhr.readyState == 4 && xhr.status == 400) {
         nextFunction(error);
       } else if (xhr.readyState == 4 && xhr.status == 200) {
-        var data = JSON.parse(xhr.responseText);
+        data = JSON.parse(xhr.responseText);
         nextFunction(null, data);
       }
     }
@@ -35,11 +35,12 @@
   function renderDom(error, data) {
     randomMov.style = "display: block";
     if (error) {
-      dom_title.textContent = "Sorry, please try another year";
+      dom_title.textContent = "Sorry, cinema wasn't invented yet";
     } else {
       var posterPath = data.poster;
       par.textContent = "May we suggest the following for you:"
       dom_title.textContent = data.titleEn;
+      dom_poster.style = "display: block, width: 404px, height: 628px, margin: auto";
       dom_poster.src = "https://image.tmdb.org/t/p/w650" + posterPath;
       dom_releasedate.textContent = "Release date: " + data.releaseDate;
       dom_overview.textContent = "Summary: " + data.overview;
