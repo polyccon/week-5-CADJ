@@ -1,4 +1,7 @@
-# week-5-CADJ
+# FilmByte!
+
+This was my team's project of week 5 during FAC, to which I added the missing error handling. In order to see it one needs to clone this repo and run it locally as the version on heroku doesn't include the error handling updates.
+
 
 ## WHY (describing the purpose)
 
@@ -22,22 +25,3 @@ As a user, I can:
 - [ ] Add review to movie info
 - [ ] Be able to search for a movie
 - [ ] Movie suggestion in modal box
-
-## HOW (describing the journey to completion)
-
-
-### Architecture
-
-
-#### Drawing out our user experience
-
-
-#### Separation of Concerns
-
-
-### API
-
-
-### Useful Links
-
-
